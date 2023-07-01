@@ -364,3 +364,4 @@ FodyWeavers.xsd
 /Challenge.Api/App_Data/Challenge.db
 /Challenge.Api/App_Data/Challenge.db-shm
 /Challenge.Api/App_Data/Challenge.db-wal
+/Challenge.Api/App_Data/Logs.txt
