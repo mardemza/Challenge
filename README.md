@@ -4,10 +4,11 @@ Proyecto de pruebas de habilidades
 
 ## Implementaciones
 
-.NET 7
-Entity Framework Core
-Dependecy Injection
-Unit of Work
-Repository Pattern
-CQRS
-Elasticsearc
+.NET 7 \
+Entity Framework Core \
+Serilog \
+Dependecy Injection \
+Repository Pattern \
+Unit of Work \
+CQRS \
+Elasticsearc \
