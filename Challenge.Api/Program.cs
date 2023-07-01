@@ -1,3 +1,4 @@
+using Challenge.EntityFramework;
 
 namespace Challenge.Api
 {
@@ -5,16 +6,23 @@ namespace Challenge.Api
     {
         public static void Main(string[] args)
         {
+
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
+            // -- Add DbContext
+            builder.Services.AddDbContext();
 
+            // Add services to the container.
             builder.Services.AddControllers();
+
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
             var app = builder.Build();
+
+            // -- Run Migrations
+            app.Services.RunMigrations();
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
@@ -22,6 +30,7 @@ namespace Challenge.Api
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+
 
             app.UseHttpsRedirection();
 
