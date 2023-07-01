@@ -5,7 +5,7 @@ namespace Challenge.EntityFramework
 {
     public static class ServiceCollections
     {
-        public static IServiceCollection AddDbContext(this IServiceCollection services)
+        public static IServiceCollection AddChallengeDbContext(this IServiceCollection services)
         {
             // -- Add DbContext
             services.AddDbContext<ChallengeDbContext>();
