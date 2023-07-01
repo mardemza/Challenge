@@ -8,7 +8,7 @@ namespace Challenge.Api
     {
         public static void Main(string[] args)
         {
-
+            // -- Init WebApplication
             var builder = WebApplication.CreateBuilder(args);
 
             // -- Use Serilog
@@ -17,12 +17,12 @@ namespace Challenge.Api
                 configuration.WriteTo.File("App_Data/Logs.txt");
             });
 
-            // -- Add DbContext
-            builder.Services.AddChallengeDbContext();
+            // -- Add DbContext, Pattern Repository and Unit Of Work
+            builder.Services.AddDependencyInjection(builder.Configuration);
 
-            // Add services to the container.
-
+            // -- Add services to the container.
             builder.Services.AddControllers();
+
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
@@ -33,7 +33,7 @@ namespace Challenge.Api
             // -- Run Migrations
             app.Services.RunMigrations();
 
-            // Configure the HTTP request pipeline.
+            // -- Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
