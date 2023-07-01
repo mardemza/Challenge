@@ -361,3 +361,6 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/Challenge.Api/App_Data/Challenge.db
+/Challenge.Api/App_Data/Challenge.db-shm
+/Challenge.Api/App_Data/Challenge.db-wal
