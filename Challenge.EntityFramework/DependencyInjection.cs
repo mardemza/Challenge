@@ -9,29 +9,33 @@ namespace Challenge.EntityFramework
 {
     public static class DependencyInjection
     {
-        public static IServiceCollection AddDependencyInjection(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddDiEntityFramework(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<ChallengeDbContext>(options =>
                     options.UseSqlite(
                         configuration.GetConnectionString("Default"),
                         b => b.MigrationsAssembly(typeof(ChallengeDbContext).Assembly.FullName)));
-            
+
             services.AddScoped<IChallengeDbContext>(provider => provider.GetRequiredService<ChallengeDbContext>());
 
             services.AddTransient(typeof(IRepository<>), typeof(BaseRepository<>));
-            services.AddTransient(typeof(IReadRepository<>), typeof(BaseRepository<>));            
+            services.AddTransient(typeof(IReadRepository<>), typeof(BaseRepository<>));
 
             return services;
         }
 
         public static IServiceProvider RunMigrations(this IServiceProvider services)
         {
+            // -- Get Scope and Context
+            using var scope = services.CreateScope();
+            var context = scope.ServiceProvider.GetRequiredService<ChallengeDbContext>();
 
-            using (var Scope = services.CreateScope())
-            {
-                var context = Scope.ServiceProvider.GetRequiredService<ChallengeDbContext>();
-                context.Database.Migrate();
-            }
+            // -- Apply Migrations
+            context.Database.Migrate();
+
+            // -- Apply Seed
+            ChallengeDbContextSeed.Seed(context);
+
             return services;
         }
     }

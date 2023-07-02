@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Challenge.EntityFramework",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Challenge.Api", "Challenge.Api\Challenge.Api.csproj", "{A0863543-8F0C-48F3-8EB3-4E917A2669A6}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Challenge.Application", "Challenge.Application\Challenge.Application.csproj", "{45B3FA4B-0E4B-455A-B1AA-04D8CE985EDD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{A0863543-8F0C-48F3-8EB3-4E917A2669A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A0863543-8F0C-48F3-8EB3-4E917A2669A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A0863543-8F0C-48F3-8EB3-4E917A2669A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45B3FA4B-0E4B-455A-B1AA-04D8CE985EDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45B3FA4B-0E4B-455A-B1AA-04D8CE985EDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45B3FA4B-0E4B-455A-B1AA-04D8CE985EDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45B3FA4B-0E4B-455A-B1AA-04D8CE985EDD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

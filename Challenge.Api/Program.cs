@@ -1,6 +1,7 @@
 
 using Serilog;
 using Challenge.EntityFramework;
+using Challenge.Application;
 
 namespace Challenge.Api
 {
@@ -18,7 +19,10 @@ namespace Challenge.Api
             });
 
             // -- Add DbContext, Pattern Repository and Unit Of Work
-            builder.Services.AddDependencyInjection(builder.Configuration);
+            builder.Services.AddDiEntityFramework(builder.Configuration);
+
+            // -- Add MediatR, AutoMapper and CQRS
+            builder.Services.AddDiApplication();
 
             // -- Add services to the container.
             builder.Services.AddControllers();
