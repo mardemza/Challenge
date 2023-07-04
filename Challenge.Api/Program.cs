@@ -24,6 +24,9 @@ namespace Challenge.Api
             // -- Add MediatR, AutoMapper and CQRS
             builder.Services.AddDiApplication();
 
+            // -- Add Eslaticsearch
+            builder.Services.AddElasticsearch(builder.Configuration);
+
             // -- Add services to the container.
             builder.Services.AddControllers();
 
@@ -36,6 +39,9 @@ namespace Challenge.Api
 
             // -- Run Migrations
             app.Services.RunMigrations();
+
+            // -- Run Refresh On Eslasticsearch
+            app.Services.RunRefreshOnElasticsearch();
 
             // -- Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())

@@ -3,7 +3,7 @@ using MediatR;
 
 namespace Challenge.Application.Permissions.Queries
 {
-    public class GetAllPermissionQuery: IRequest<IEnumerable<EmployeePermissionTypeDto>>
+    public class GetAllPermissionElasticQuery: IRequest<IEnumerable<EmployeePermissionTypeDto>>
     {
         public string Search { get; set; } = string.Empty;
         public long? EmployeeId { get; set; }

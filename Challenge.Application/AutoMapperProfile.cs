@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Challenge.Application.Permissions.Queries.Dto;
+using Challenge.Application.Permissions.Services.Dto;
 using Challenge.Core.Domain;
 
 namespace Challenge.Application
@@ -9,6 +9,12 @@ namespace Challenge.Application
         public AutoMapperProfile()
         {
             CreateMap<Permission, EmployeePermissionTypeDto>();
+            CreateMap<Employee, EmployeeDto>();
+            CreateMap<Employee, EmployeeDto>().ReverseMap();
+            CreateMap<Permission, PermissionDto>();
+            CreateMap<Permission, PermissionDto>().ReverseMap();
+            CreateMap<PermissionType, PermissionTypeDto>();
+            CreateMap<PermissionType, PermissionTypeDto>().ReverseMap();
         }
     }
 }

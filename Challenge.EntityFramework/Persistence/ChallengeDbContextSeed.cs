@@ -4,7 +4,7 @@ namespace Challenge.EntityFramework.Persistence
 {
     public static class ChallengeDbContextSeed
     {
-        public static void Seed(ChallengeDbContext context)
+        public static void Seed(this ChallengeDbContext context)
         {
             if (context != null)
             {

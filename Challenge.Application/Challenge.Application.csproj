@@ -9,11 +9,16 @@
   <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
     <PackageReference Include="MediatR" Version="12.0.1" />
+    <PackageReference Include="NEST" Version="7.17.5" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Challenge.Core\Challenge.Core.csproj" />
     <ProjectReference Include="..\Challenge.EntityFramework\Challenge.EntityFramework.csproj" />
   </ItemGroup>
+
+	<PropertyGroup>
+		<InvariantGlobalization>true</InvariantGlobalization>
+	</PropertyGroup>
 
 </Project>

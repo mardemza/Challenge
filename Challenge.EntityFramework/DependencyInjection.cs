@@ -12,7 +12,7 @@ namespace Challenge.EntityFramework
         public static IServiceCollection AddDiEntityFramework(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<ChallengeDbContext>(options =>
-                    options.UseSqlite(
+                    options.UseSqlServer(
                         configuration.GetConnectionString("Default"),
                         b => b.MigrationsAssembly(typeof(ChallengeDbContext).Assembly.FullName)));
 
@@ -34,7 +34,7 @@ namespace Challenge.EntityFramework
             context.Database.Migrate();
 
             // -- Apply Seed
-            ChallengeDbContextSeed.Seed(context);
+            context.Seed();
 
             return services;
         }

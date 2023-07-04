@@ -1,6 +1,6 @@
 using Challenge.Application.Permissions.Commands;
 using Challenge.Application.Permissions.Queries;
-using Challenge.Application.Permissions.Queries.Dto;
+using Challenge.Application.Permissions.Services.Dto;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

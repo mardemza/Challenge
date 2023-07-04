@@ -1,11 +1,9 @@
-﻿using Challenge.Core.Domain;
+﻿using AutoMapper;
+using Challenge.Application.Permissions.Services;
+using Challenge.Application.Permissions.Services.Dto;
+using Challenge.Core.Domain;
 using Challenge.EntityFramework.Interfaces;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Challenge.Application.Permissions.Commands
 {
@@ -14,12 +12,16 @@ namespace Challenge.Application.Permissions.Commands
         private readonly IRepository<Permission> _permissionRepository;
         private readonly IRepository<Employee> _employeeRepository;
         private readonly IRepository<PermissionType> _permissionTypeRepository;
+        private readonly IEslasticsearchService _eslasticsearchService;
+        private readonly IMapper _mapper;
 
-        public ModifyPermissionCommandHandler(IRepository<Permission> permissionRepository, IRepository<Employee> employeeRepository, IRepository<PermissionType> permissionTypeRepository)
+        public ModifyPermissionCommandHandler(IRepository<Permission> permissionRepository, IRepository<Employee> employeeRepository, IRepository<PermissionType> permissionTypeRepository, IEslasticsearchService eslasticsearchService, IMapper mapper)
         {
             _permissionRepository = permissionRepository;
             _employeeRepository = employeeRepository;
             _permissionTypeRepository = permissionTypeRepository;
+            _eslasticsearchService = eslasticsearchService;
+            _mapper = mapper;
         }
 
 
@@ -49,6 +51,10 @@ namespace Challenge.Application.Permissions.Commands
 
             // -- Call Unit Of Work to finish operation
             await _permissionRepository.UnitOfWork.SaveChangesAsync(cancellationToken);
+
+            // -- Add on Eslasticsearch 
+            var obj = _mapper.Map<PermissionDto>(permission);
+            await _eslasticsearchService.Update(obj);
 
             return permission.Id;
 

@@ -1,15 +1,16 @@
-﻿namespace Challenge.Application.Permissions.Queries.Dto
+﻿using Challenge.Core;
+
+namespace Challenge.Application.Permissions.Services.Dto
 {
-    public class EmployeePermissionTypeDto
+    public class EmployeePermissionTypeDto: EntityBase
     {
-        public long Id { get; set; }
         public string Name { get; set; } = string.Empty;
-        
+
         public long EmployeeId { get; set; }
         public string EmployeeName { get; set; } = string.Empty;
         public string EmployeeSurname { get; set; } = string.Empty;
-        
+
         public long PermissionTypeId { get; set; }
-        public string PermissionTypeName { get; set; } = string.Empty;        
+        public string PermissionTypeName { get; set; } = string.Empty;
     }
 }

@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Challenge.Application.Permissions.Queries.Dto;
+using Challenge.Application.Permissions.Services.Dto;
 using Challenge.Core.Domain;
 using Challenge.EntityFramework.Interfaces;
 using MediatR;

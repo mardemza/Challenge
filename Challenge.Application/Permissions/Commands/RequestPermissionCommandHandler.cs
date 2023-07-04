@@ -1,4 +1,6 @@
-﻿using Challenge.Core.Domain;
+﻿using AutoMapper;
+using Challenge.Application.Permissions.Services;
+using Challenge.Core.Domain;
 using Challenge.EntityFramework.Interfaces;
 using MediatR;
 
@@ -9,12 +11,16 @@ namespace Challenge.Application.Permissions.Commands
         private readonly IRepository<Permission> _permissionRepository;
         private readonly IRepository<Employee> _employeeRepository;
         private readonly IRepository<PermissionType> _permissionTypeRepository;
+        private readonly IEslasticsearchService _eslasticsearchService;
+        private readonly IMapper _mapper;
 
-        public RequestPermissionCommandHandler(IRepository<Permission> permissionRepository, IRepository<Employee> employeeRepository, IRepository<PermissionType> permissionTypeRepository)
+        public RequestPermissionCommandHandler(IRepository<Permission> permissionRepository, IRepository<Employee> employeeRepository, IRepository<PermissionType> permissionTypeRepository, IEslasticsearchService eslasticsearchService, IMapper mapper)
         {
             _permissionRepository = permissionRepository;
             _employeeRepository = employeeRepository;
             _permissionTypeRepository = permissionTypeRepository;
+            _eslasticsearchService = eslasticsearchService;
+            _mapper = mapper;
         }
 
         public async Task<long> Handle(RequestPermissionCommand request, CancellationToken cancellationToken)
@@ -41,10 +47,15 @@ namespace Challenge.Application.Permissions.Commands
                 PermissionTypeId = request.PermissionTypeId
             };
 
+            //-- Add Permission
             var result = await _permissionRepository.AddAsync(permission, cancellationToken);
 
             // -- Call Unit Of Work to finish operation
             await _permissionRepository.UnitOfWork.SaveChangesAsync(cancellationToken);
+
+            // -- Add on Eslasticsearch 
+            var obj = _mapper.Map<Permission>(result);
+            await _eslasticsearchService.Add(obj);
 
             return result.Id;
         }
