@@ -25,7 +25,7 @@ namespace Challenge.Application
         public static void AddElasticsearch(this IServiceCollection services, IConfiguration configuration)
         {
             // -- Get configs
-            var url = configuration["Elasticsearch:Url"];
+            var url = configuration["Elasticsearch:Url"] ?? "";
             var indexName = configuration["Elasticsearch:IndexName"];
 
             // -- Generate connections
